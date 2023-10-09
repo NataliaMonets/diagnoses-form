@@ -2,25 +2,25 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { FormPageComponent } from './pages/form-page/form-page.component';
-import { TextInputComponent } from './shared/inputs/text-input/text-input.component';
-import { DateInputComponent } from './shared/inputs/date-input/date-input.component';
-import { SelectInputComponent } from './shared/inputs/select-input/select-input.component';
+
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FormPageComponent,
-    TextInputComponent,
-    DateInputComponent,
-    SelectInputComponent
+    AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [BsDatepickerConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

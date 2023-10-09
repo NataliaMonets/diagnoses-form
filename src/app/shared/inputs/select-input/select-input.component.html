@@ -1,1 +1,15 @@
-<p>select-input works!</p>
+<div [formGroup]="form">
+    <label *ngIf="label" [for]="fieldId" class="form-label">{{ label }}</label>
+    <div class="input-group">
+        <select class="form-control form-select" [id]="fieldId" [formControlName]="controlName"
+        [ngClass]="{ 'is-invalid': f?.errors && submitted }">
+            <option value="null" disabled>{{ defaultValue }}</option>
+            <option *ngFor="let option of options" [value]="option.code">{{ option.name }}</option>
+        </select>
+    </div>
+    <div *ngIf="f?.errors && submitted" class="invalid-feedback">
+        <div *ngFor="let error of f?.errors | keyvalue">
+            {{ getErrorMessage(error.key, error) }}
+        </div>
+    </div>
+</div>

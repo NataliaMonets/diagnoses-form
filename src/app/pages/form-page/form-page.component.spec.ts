@@ -8,7 +8,7 @@ describe('FormPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormPageComponent ]
+        imports: [ FormPageComponent ]
     })
     .compileComponents();
 

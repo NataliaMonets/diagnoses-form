@@ -8,7 +8,7 @@ describe('SelectInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectInputComponent ]
+        imports: [ SelectInputComponent ]
     })
     .compileComponents();
 

@@ -1,0 +1,14 @@
+<div [formGroup]="form">
+    <label *ngIf="label" [for]="fieldId" class="form-label">{{ label }}</label>
+    <div class="input-group">
+        <input class="form-control rounded position-relative" [formControlName]="controlName" [id]="fieldId" bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" [minDate]="minDate" placeholder="__-__-____" [ngClass]="{ 'is-invalid': f?.errors && submitted }" onkeydown="return false" #d="bsDatepicker">
+        <span class="material-symbols-outlined calendar" role="button" (click)="d.toggle()">
+            calendar_month
+        </span>
+    </div>
+    <div *ngIf="f?.errors && submitted" class="invalid-feedback">
+        <div *ngFor="let error of f?.errors | keyvalue">
+            {{ getErrorMessage(error.key, error) }}
+        </div>
+    </div>
+</div>

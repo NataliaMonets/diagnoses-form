@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+                "guid-typescript"
+            ],
             "outputPath": "dist/angular-test-project",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -31,7 +34,8 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js"
