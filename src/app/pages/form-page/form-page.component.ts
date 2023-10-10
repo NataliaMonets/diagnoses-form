@@ -121,7 +121,10 @@ export class FormPageComponent implements OnInit {
     private initForm(): void {
         this.form = this.formBuilder.group<DiagnosesForm>({
             date: this.formBuilder.control(null, Validators.required),
-            conditions: this.formBuilder.array([])
+            conditions: this.formBuilder.array([this.formBuilder.group<ConditionForm>({
+                diagnosis: this.formBuilder.control(null, Validators.required),
+                comment: this.formBuilder.control(null)
+            })])
         });
     }
 
