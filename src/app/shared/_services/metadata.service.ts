@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DiagnosisDetails } from '../interfaces/data.interfaces';
@@ -8,9 +8,11 @@ import { DiagnosisDetails } from '../interfaces/data.interfaces';
 })
 export class MetadataService {
 
+    private baseUrl = 'https://global.lakmus.org/Dictionaries/icpc2';
     private readonly http: HttpClient = inject(HttpClient);
 
-    public getDiagnosisData(): Observable<DiagnosisDetails[]> {
-        return this.http.get<DiagnosisDetails[]>('https://global.lakmus.org/Dictionaries/icpc2?IsPublic=true&Search=Ост');
+    public getDiagnosisData(isPublic: boolean = true, search: string = 'Ост'): Observable<DiagnosisDetails[]> {
+        return this.http.get<DiagnosisDetails[]>(`${this.baseUrl}?IsPublic=${isPublic}&Search=${search}`);
     }
+    
 }

@@ -22,8 +22,7 @@ import { SelectInputComponent } from 'src/app/shared/inputs/select-input/select-
         ReactiveFormsModule,
         DateInputComponent,
         SelectInputComponent,
-        TextInputComponent,
-        FormPageComponent
+        TextInputComponent
     ]
 })
 export class FormPageComponent implements OnInit {
@@ -46,6 +45,7 @@ export class FormPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.initForm();
+        // TODO CORS error, used a constant with the data instead.
         // this.getDiagnosisData();
     }
 
@@ -110,9 +110,12 @@ export class FormPageComponent implements OnInit {
         }
 
         this.jsonData = JSON.stringify(formData, null, 2);
+        this.submitted = false;
+    }
+
+    public clearForm(): void {
         this.form.reset();
         this.conditionsList.clear();
-        this.submitted = false;
     }
 
     private initForm(): void {
@@ -123,9 +126,12 @@ export class FormPageComponent implements OnInit {
     }
 
     private getDiagnosisData(): void {
-        this.metadataService.getDiagnosisData().pipe(first()).subscribe(data => {
-            this.diagnosisData = data;
-        })
+        this.metadataService.getDiagnosisData().pipe(first()).subscribe(
+            {
+                next: data => this.diagnosisData = data,
+                error: error => console.log(error)
+            }
+        );
     }
 
 }
